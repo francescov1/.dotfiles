@@ -22,13 +22,13 @@
                         ]
                     },
                     {
-                        "description": "Map Caps Lock + Cmd + F to Ctrl + Cmd + F for fullscreen",
+                        "description": "Map hyper + cmd + f to ctrl + cmd + f for fullscreen",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "f",
                                     "modifiers": {
-                                        "mandatory": ["caps_lock", "command"],
+                                        "mandatory": ["left_shift", "left_control", "left_option", "command"],
                                         "optional": ["any"]
                                     }
                                 },
