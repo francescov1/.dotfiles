@@ -40,9 +40,6 @@ alias flush-dns-cache="sudo killall -HUP mDNSResponder"
 # get processes listening to ports
 alias ports="lsof -iTCP -sTCP:LISTEN -n -P"
 
-# get number of lines of code in git repo
-alias lines='git ls-files | xargs wc -l'
-
 # get size of folder and files inside
 alias size='du -chd 1 | sort -h'
 
@@ -83,6 +80,9 @@ function diff {
 ############################################################
 ############################ git ###########################
 ############################################################
+
+# get number of lines of code in git repo
+alias git-lines='git ls-files | xargs wc -l'
 
 # Some config to improve diffs
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RF"
