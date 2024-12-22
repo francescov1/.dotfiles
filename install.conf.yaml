@@ -5,8 +5,3 @@
     ~/.tmux.conf: tmux.conf
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
-    ~/Library/Preferences/com.knollsoft.Rectangle.plist:
-        path: rectangle.plist
-
-
-# `force: true` when creating a new file
