@@ -3,7 +3,7 @@
 ############################################################
 
 # source .zshrc
-alias sz='source ~/.zshrc && echo ".zshrc reloaded successfully"'
+alias sz='source ~/.zshrc && echo "sourced ~/.zshrc successfully"'
 
 # edit .zshrc
 alias ez='vi ~/.zshrc && sz'
