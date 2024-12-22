@@ -1,0 +1,177 @@
+############################################################
+################# General Shell Shortcuts ##################
+############################################################
+
+# source .zshrc
+alias sz='source ~/.zshrc && echo ".zshrc reloaded successfully"'
+
+# edit .zshrc
+alias ez='vi ~/.zshrc && sz'
+
+# edit .aliases
+alias ea='vi ~/.aliases'
+
+alias ls='ls -G'
+
+# List all files colorized in long format, including dot files
+alias la="ls -lha"
+
+
+############################################################
+###################### Random Helpers ######################
+############################################################
+
+# Node.js shortcuts
+alias ns="npm start"
+alias nt="npm test"
+alias nr="npm run"
+alias nb="npm run build"
+alias nrb="npm run build"
+alias nrd="npm run dev"
+
+alias ys="yarn start"
+alias yt="yarn test"
+alias yb="yarn build"
+alias yd="yarn dev"
+
+# clear dns cache
+alias flush-dns-cache="sudo killall -HUP mDNSResponder"
+
+# get processes listening to ports
+alias ports="lsof -iTCP -sTCP:LISTEN -n -P"
+
+# get number of lines of code in git repo
+alias lines='git ls-files | xargs wc -l'
+
+# get size of folder and files inside
+alias size='du -chd 1 | sort -h'
+
+# get current ip address
+alias ip='curl -s http://ipecho.net/plain'
+
+# copy lorem ipsum to clipboard
+alias lorem='echo \
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, \
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis 
+aute irure dolor in reprehenderit in voluptate velit esse cillum \
+  dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt 
+in culpa qui officia deserunt mollit anim id est laborum." | pbcopy && \
+  echo "Lorem ipsum passage copied to clipboard"'
+
+# copy path to clipboard
+alias cpath='pwd | pbcopy'
+
+############################################################
+########################### TMUX ###########################
+############################################################
+
+# Always use color output for `ls`
+export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+
+alias mux="tmuxinator"
+
+# source .zshrc in all tmux panes (runs 'sz' alias in all tmux panes)
+alias szt="tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index}' | xargs 
+-I PANE tmux send-keys -t PANE 'sz' Enter"
+
+# System diff
+function diff {
+    command diff -u "$@" | diff-so-fancy
+}
+
+############################################################
+############################ git ###########################
+############################################################
+
+# Some config to improve diffs
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RF"
+git config --global interactive.diffFilter "diff-so-fancy --patch"
+
+git config --global color.ui true
+
+git config --global color.diff-highlight.oldNormal    "red bold"
+git config --global color.diff-highlight.oldHighlight "red bold 52"
+git config --global color.diff-highlight.newNormal    "green bold"
+git config --global color.diff-highlight.newHighlight "green bold 22"
+
+git config --global color.diff.meta       "11"
+git config --global color.diff.frag       "magenta bold"
+git config --global color.diff.func       "146 bold"
+git config --global color.diff.commit     "yellow bold"
+git config --global color.diff.old        "red bold"
+git config --global color.diff.new        "green bold"
+git config --global color.diff.whitespace "red reverse"
+
+# git short forms
+alias ga='git add'
+alias gb='git branch'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gcl='git clone'
+alias gco='git checkout'
+alias gcom='git checkout master || git checkout main'
+alias gcod='git checkout dev || git checkout development'
+alias gcos='git checkout staging'
+alias gd='git diff'
+alias gda='git diff HEAD'
+alias gl='git log --graph --oneline --decorate --all'
+alias gld='git log --pretty=format:"%h %ad %s" --all'
+alias gm='git merge --no-ff'
+alias gmd='git merge dev --no-ff'
+alias gms='git merge staging --no-ff'
+alias gma='git merge --abort'
+alias gmc='git merge --continue'
+alias gpl='git pull'
+alias gp='git push'
+alias gr='git rebase'
+alias gs='git status'
+alias gst='git stash'
+alias gsta='git stash apply'
+alias gstd='git stash drop'
+alias gstl='git stash list'
+alias gstp='git stash pop'
+alias gsts='git stash save'
+
+# copy last commit hash
+alias gclc='git rev-parse HEAD | pbcopy'
+
+## Github
+alias ghic='gh issue create --project "Castello Sprint Tracker" --assignee "@me" --title'
+
+# cocoapods
+alias clean-pods='rm -rf "${HOME}/Library/Caches/CocoaPods" && rm -rf "`pwd`/Pods/"'
+
+# Transcrypts
+alias k8s-prod='gcloud container clusters get-credentials lighthouse-cluster-production --zone us-central1-a --project project-lighthouse-403916'
+alias k8s-staging='gcloud container clusters get-credentials lighthouse-cluster-staging --zone us-central1-a --project project-lighthouse-403916'
+alias k9s-prod='k8s-prod && k9s'
+alias k9s-staging='k8s-staging && k9s'
+
+# This function connects to telepresence, checks if a k8s service is accessible, and reconnects if not.
+# This seems to be often needed when using the tailscale VPN.
+function telepresence_connect_retry {
+    # Attempt to connect using telepresence
+    telepresence connect
+
+    # Try to access your Kubernetes service
+    curl -s --fail "http://backend-service.default.svc.cluster.local" >/dev/null
+
+    # Check the exit status of the curl command
+    if [ "$?" != "0" ]; then
+        echo "Service is not accessible, retrying connection..."
+        # Disconnect if the service is not accessible
+        telepresence quit
+
+        # Reattempt the connection
+        telepresence connect
+    fi
+}
+
+
+# Kubernetes telepresence connect. Tunnels local traffic to k8s cluster for local development. 
+# Only runs on staging to ensure we don't mess with the production cluster
+
+alias k8s-tunnel='k8s-staging && telepresence_connect_retry'
+alias k8s-tunnel-quit='k8s-staging && telepresence quit'
+

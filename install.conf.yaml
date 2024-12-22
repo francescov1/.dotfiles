@@ -6,4 +6,5 @@
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
     ~/.config/karabiner/karabiner.json: karabiner.json
+    ~/.aliases: aliases
 
