@@ -22,6 +22,27 @@
                         ]
                     },
                     {
+                        "description": "Map Caps Lock + Cmd + F to Ctrl + Cmd + F for fullscreen",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "mandatory": ["caps_lock", "command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f",
+                                        "modifiers": ["control", "command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Open app shortcuts",
                         "manipulators": [
                             {
