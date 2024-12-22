@@ -5,7 +5,5 @@
     ~/.tmux.conf: tmux.conf
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
-    "~/.config/karabiner/karabiner.json":
-        path: karabiner.json
-        force: true
+    ~/.config/karabiner/karabiner.json: karabiner.json
 
