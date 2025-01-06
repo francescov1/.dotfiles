@@ -12,9 +12,14 @@
       command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
     - description: Installing oh-my-zsh
       command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      stderr: true
+      stdout: true
       stdin: true
     - description: Installing Homebrew packages
       command: brew install tmux tmuxinator pyenv pyenv-virtualenv fzf gh raycast diff-so-fancy karabiner-elements
+      stderr: true
+      stdout: true
+      stdin: true
     - description: Setting key repeat speed to 2
       command: defaults write NSGlobalDomain KeyRepeat -int 2
 
