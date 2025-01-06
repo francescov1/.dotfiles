@@ -69,7 +69,7 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 
 # NOTE: idk why I had to add this, but this stopped working
-export ZSH="/Users/francescovirga/.oh-my-zsh" 
+export ZSH="$HOME/.oh-my-zsh" 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -133,18 +133,18 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/francescovirga/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/francescovirga/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/francescovirga/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/francescovirga/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Scripts
-export PATH="/Users/francescovirga/scripts:$PATH"
+export PATH="$HOME/scripts:$PATH"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 # bun completions
-[ -s "/Users/francescovirga/.bun/_bun" ] && source "/Users/francescovirga/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
