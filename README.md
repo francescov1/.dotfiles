@@ -3,6 +3,7 @@
 ```bash
 git clone https://github.com/francescov1/.dotfiles.git
 cd .dotfiles
+./setup.sh
 ./install
 ```
 

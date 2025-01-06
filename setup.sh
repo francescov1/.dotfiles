@@ -5,7 +5,6 @@
 
 brew update
 
-
 # Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 
@@ -21,3 +20,9 @@ brew install tmuxinator
 # Install pyenv and pyenv-virtualenv
 brew install pyenv
 brew install pyenv-virtualenv
+
+brew install fzf
+brew install gh
+brew install raycast
+brew install diff-so-fancy
+brew install karabiner-elements
