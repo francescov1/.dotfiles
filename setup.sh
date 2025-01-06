@@ -26,3 +26,6 @@ brew install gh
 brew install raycast
 brew install diff-so-fancy
 brew install karabiner-elements
+
+# Speed up key repeats
+defaults write NSGlobalDomain KeyRepeat -int 2
