@@ -20,6 +20,11 @@
       stderr: true
       stdout: true
       stdin: true
+    - description: Installing Homebrew casks
+      command: brew install --cask keepingyouawake
+      stderr: true
+      stdout: true
+      stdin: true
     - description: Setting key repeat speed to 2
       command: defaults write NSGlobalDomain KeyRepeat -int 2
 

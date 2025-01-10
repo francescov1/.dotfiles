@@ -50,6 +50,14 @@
                                     "key_code": "s",
                                     "modifiers": { "mandatory": ["control", "option", "shift"] }
                                 },
+                                "to": [{ "shell_command": "open -a Slack" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "b",
+                                    "modifiers": { "mandatory": ["control", "option", "shift"] }
+                                },
                                 "to": [{ "shell_command": "open -a Safari" }],
                                 "type": "basic"
                             },
@@ -67,6 +75,14 @@
                                     "modifiers": { "mandatory": ["control", "option", "shift"] }
                                 },
                                 "to": [{ "shell_command": "open -a Notes" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "o",
+                                    "modifiers": { "mandatory": ["control", "option", "shift"] }
+                                },
+                                "to": [{ "shell_command": "open -a Notion" }],
                                 "type": "basic"
                             },
                             {
@@ -91,6 +107,14 @@
                                     "modifiers": { "mandatory": ["control", "option", "shift"] }
                                 },
                                 "to": [{ "shell_command": "open -a Cursor" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["control", "option", "shift"] }
+                                },
+                                "to": [{ "shell_command": "open -a Linear" }],
                                 "type": "basic"
                             },
                             {
