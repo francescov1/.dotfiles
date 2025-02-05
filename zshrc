@@ -152,4 +152,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# TODO: Figure out how to set option tab as the key binding
+#bindkey '\e\t' autosuggest-accept # accept autosuggestion with option-tab
 eval "$(scmpuff init -s)"
