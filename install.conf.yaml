@@ -25,8 +25,8 @@
       stderr: true
       stdout: true
       stdin: true
-    - description: Setting key repeat speed to 2
-      command: defaults write NSGlobalDomain KeyRepeat -int 2
+    - description: Setting key repeat speed to 1
+      command: defaults write NSGlobalDomain KeyRepeat -int 1
 
 - link:
     ~/.gitconfig: gitconfig
