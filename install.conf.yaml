@@ -21,7 +21,7 @@
       stdout: true
       stdin: true
     - description: Installing Homebrew casks
-      command: brew install --cask keepingyouawake
+      command: brew install --cask keepingyouawake cursor
       stderr: true
       stdout: true
       stdin: true
@@ -37,4 +37,8 @@
         path: karabiner.json
         force: true
     ~/.aliases: aliases
+    ~/Library/Application\ Support/Cursor/User/keybindings.json:
+        path: keybindings.json
+        force: true
+
 

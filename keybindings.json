@@ -1,0 +1,23 @@
+[
+    // Resize sidebar in Cursor
+    {
+        "command": "runCommands",
+         "key": "shift+alt+[",
+        "args": {
+          "commands": [
+            "workbench.action.focusSideBar",
+            "workbench.action.decreaseViewSize"
+          ]
+        }
+      },
+      {
+        "command": "runCommands",
+        "key": "shift+alt+]",
+        "args": {
+          "commands": [
+            "workbench.action.focusSideBar",
+            "workbench.action.increaseViewSize"
+          ]
+        }
+      }
+]
