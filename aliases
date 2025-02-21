@@ -26,13 +26,18 @@ alias ns="npm start"
 alias nt="npm test"
 alias nr="npm run"
 alias nb="npm run build"
-alias nrb="npm run build"
-alias nrd="npm run dev"
+alias nd="npm run dev"
 
 alias ys="yarn start"
 alias yt="yarn test"
 alias yb="yarn build"
 alias yd="yarn dev"
+
+alias bs="bun start"
+alias bt="bun test"
+alias bb="bun run build"
+alias bd="bun run dev"
+alias br="bun run"
 
 # clear dns cache
 alias flush-dns-cache="sudo killall -HUP mDNSResponder"
