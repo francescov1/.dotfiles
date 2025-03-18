@@ -1,4 +1,4 @@
-- clean: ['~']
+- clean: ["~"]
 
 - shell:
     - description: Installing Homebrew
@@ -25,8 +25,8 @@
       stderr: true
       stdout: true
       stdin: true
-    - description: Setting key repeat speed to 1
-      command: defaults write NSGlobalDomain KeyRepeat -int 1
+    - description: Setting key repeat speeds
+      command: defaults write NSGlobalDomain KeyRepeat -int 1 && defaults write -g InitialKeyRepeat -int 10
 
 - link:
     ~/.gitconfig: gitconfig
@@ -34,11 +34,9 @@
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
     ~/.config/karabiner/karabiner.json:
-        path: karabiner.json
-        force: true
+      path: karabiner.json
+      force: true
     ~/.aliases: aliases
     ~/Library/Application\ Support/Cursor/User/keybindings.json:
-        path: keybindings.json
-        force: true
-
-
+      path: keybindings.json
+      force: true
