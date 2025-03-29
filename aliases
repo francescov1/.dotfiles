@@ -122,6 +122,7 @@ alias gd='git diff'
 alias gda='git diff HEAD'
 alias gl='git log --graph --oneline --decorate --all'
 alias gld='git log --pretty=format:"%h %ad %s" --all'
+alias glp='git log -p'
 alias gm='git merge --no-ff'
 alias gmd='git merge dev --no-ff'
 alias gms='git merge staging --no-ff'
@@ -141,17 +142,8 @@ alias gsts='git stash save'
 # copy last commit hash
 alias gclc='git rev-parse HEAD | pbcopy'
 
-## Github
-alias ghic='gh issue create --project "Castello Sprint Tracker" --assignee "@me" --title'
-
 # cocoapods
 alias clean-pods='rm -rf "${HOME}/Library/Caches/CocoaPods" && rm -rf "`pwd`/Pods/"'
-
-# Transcrypts
-alias k8s-prod='gcloud container clusters get-credentials lighthouse-cluster-production --zone us-central1-a --project project-lighthouse-403916'
-alias k8s-staging='gcloud container clusters get-credentials lighthouse-cluster-staging --zone us-central1-a --project project-lighthouse-403916'
-alias k9s-prod='k8s-prod && k9s'
-alias k9s-staging='k8s-staging && k9s'
 
 # This function connects to telepresence, checks if a k8s service is accessible, and reconnects if not.
 # This seems to be often needed when using the tailscale VPN.
@@ -176,9 +168,6 @@ function telepresence_connect_retry {
 
 # Kubernetes telepresence connect. Tunnels local traffic to k8s cluster for local development. 
 # Only runs on staging to ensure we don't mess with the production cluster
-
-alias k8s-tunnel='k8s-staging && telepresence_connect_retry'
-alias k8s-tunnel-quit='k8s-staging && telepresence quit'
 
 # ripgrep with ignore patterns
 function rp {

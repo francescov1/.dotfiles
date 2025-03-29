@@ -107,10 +107,10 @@ setopt no_share_history
 unsetopt share_history
 
 # load in shell config files
-for file in ~/.{path,aliases,functions}; do
-    [ -f "$file" ] && source "$file"
-done
-unset file
+[ -f "~/.path" ] && source "~/.path"
+[ -f "~/.aliases" ] && source "~/.aliases"
+[ -f "~/.aliases.local" ] && source "~/.aliases.local"
+[ -f "~/.functions" ] && source "~/.functions"
 
 # case-insensitive auto complete - only matches case-insensitive when no case-sensitive matches exist
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
