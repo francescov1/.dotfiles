@@ -1,4 +1,3 @@
-
 # Path to your Oh My Zsh installation.
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -107,10 +106,10 @@ setopt no_share_history
 unsetopt share_history
 
 # load in shell config files
-[ -f "~/.path" ] && source "~/.path"
-[ -f "~/.aliases" ] && source "~/.aliases"
-[ -f "~/.aliases.local" ] && source "~/.aliases.local"
-[ -f "~/.functions" ] && source "~/.functions"
+[ -f ~/.path ] && source ~/.path
+[ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/.aliases.local ] && source ~/.aliases.local
+[ -f ~/.functions ] && source ~/.functions
 
 # case-insensitive auto complete - only matches case-insensitive when no case-sensitive matches exist
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
