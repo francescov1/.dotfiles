@@ -61,8 +61,6 @@ aute irure dolor in reprehenderit in voluptate velit esse cillum \
 in culpa qui officia deserunt mollit anim id est laborum." | pbcopy && \
   echo "Lorem ipsum passage copied to clipboard"'
 
-# copy path to clipboard
-alias cpath='pwd | pbcopy'
 
 ############################################################
 ########################### TMUX ###########################
@@ -81,6 +79,9 @@ alias szt="tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index}'
 function diff {
     command diff -u "$@" | diff-so-fancy
 }
+
+# Copy
+alias pbcopy='c'
 
 ############################################################
 ############################ git ###########################
@@ -111,6 +112,7 @@ git config --global color.diff.whitespace "red reverse"
 # git short forms
 alias ga='git add'
 alias gb='git branch'
+alias gbc='git branch --show-current | pbcopy' # copy current branch name to clipboard
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gcl='git clone'
