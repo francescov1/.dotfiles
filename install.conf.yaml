@@ -21,7 +21,7 @@
       stdout: true
       stdin: true
     - description: Installing Homebrew casks
-      command: brew install --cask keepingyouawake cursor
+      command: brew install --cask keepingyouawake cursor warp
       stderr: true
       stdout: true
       stdin: true
