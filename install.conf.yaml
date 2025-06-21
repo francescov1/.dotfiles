@@ -16,12 +16,17 @@
       stdout: true
       stdin: true
     - description: Installing Homebrew packages
-      command: brew install tmux tmuxinator pyenv pyenv-virtualenv fzf gh raycast diff-so-fancy karabiner-elements zsh-autosuggestions zsh-syntax-highlighting scmpuff derailed/k9s/k9s postgresql@16 ripgrep helm
+      command: brew install tmux tmuxinator pyenv pyenv-virtualenv fzf gh raycast diff-so-fancy karabiner-elements zsh-autosuggestions zsh-syntax-highlighting scmpuff derailed/k9s/k9s postgresql@16 ripgrep helm helmfile
       stderr: true
       stdout: true
       stdin: true
     - description: Installing Homebrew casks
       command: brew install --cask keepingyouawake cursor warp rectangle contexts brave-browser iterm2
+      stderr: true
+      stdout: true
+      stdin: true
+    - description: Installing helm-diff
+      command: helm plugin install https://github.com/databus23/helm-diff
       stderr: true
       stdout: true
       stdin: true
