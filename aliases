@@ -146,6 +146,18 @@ alias gsts='git stash save'
 # copy last commit hash
 alias gclc='git rev-parse HEAD | pbcopy'
 
+# BAT for better file paging
+alias cat='bat'
+batdiff() {
+    git diff --name-only --relative --diff-filter=d -z | xargs --null bat --diff
+}
+alias gbd='batdiff'
+
+# Bat help. Use by running `help <command>`
+help() {
+    "$@" --help 2>&1 | bat --plain --language=help
+} 
+
 # cocoapods
 alias clean-pods='rm -rf "${HOME}/Library/Caches/CocoaPods" && rm -rf "`pwd`/Pods/"'
 

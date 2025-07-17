@@ -158,3 +158,5 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #bindkey '\e\t' autosuggest-accept # accept autosuggestion with option-tab
 eval "$(scmpuff init -s)"
 
+
+. "$HOME/.local/bin/env"
