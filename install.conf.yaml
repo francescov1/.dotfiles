@@ -36,6 +36,7 @@
 - link:
     ~/.gitconfig: gitconfig
     ~/.tmux.conf: tmux.conf
+    ~/.vimrc: vimrc
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
     ~/.config/karabiner/karabiner.json:
