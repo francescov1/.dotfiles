@@ -31,7 +31,7 @@
       stdout: true
       stdin: true
     - description: Setting key repeat speeds
-      command: defaults write NSGlobalDomain KeyRepeat -int 1 && defaults write -g InitialKeyRepeat -int 10
+      command: defaults write NSGlobalDomain KeyRepeat -int 2 && defaults write -g InitialKeyRepeat -int 10
 
 - link:
     ~/.gitconfig: gitconfig
