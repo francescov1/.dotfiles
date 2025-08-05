@@ -129,7 +129,10 @@ alias gsts='git stash save'
 alias gclc='git rev-parse HEAD | pbcopy'
 
 # BAT for better file paging
-alias cat='bat'
+cat() {
+  bat "$@" 
+}
+
 batdiff() {
     git diff --name-only --relative --diff-filter=d -z | xargs --null bat --diff
 }
