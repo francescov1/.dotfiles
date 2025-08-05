@@ -1,4 +1,4 @@
-############################################################
+###########################################################
 ################# General Shell Shortcuts ##################
 ############################################################
 
@@ -151,12 +151,23 @@ alias cat='bat'
 batdiff() {
     git diff --name-only --relative --diff-filter=d -z | xargs --null bat --diff
 }
-alias gbd='batdiff'
+alias gdd='batdiff'
 
 # Bat help. Use by running `help <command>`
 help() {
     "$@" --help 2>&1 | bat --plain --language=help
 } 
+
+# use scmpuff numbering for other commands
+# eg: `s rm 2-3`
+s() {
+  local cmd=$1
+  shift
+  for index in "$@"; do
+    local file="${SCMPUFF_GIT_MODIFIED_FILES[$((index-1))]}"
+    [ -n "$file" ] && $cmd "$file"
+  done
+}
 
 # cocoapods
 alias clean-pods='rm -rf "${HOME}/Library/Caches/CocoaPods" && rm -rf "`pwd`/Pods/"'
