@@ -163,10 +163,24 @@ help() {
 s() {
   local cmd=$1
   shift
-  for index in "$@"; do
-    local file="${SCMPUFF_GIT_MODIFIED_FILES[$((index-1))]}"
-    [ -n "$file" ] && $cmd "$file"
+
+  # Get file list from scmpuff
+  local files
+  IFS=$'\n' read -d '' -r -a files < <(scmpuff status --filelist && printf '\0')
+
+  # Expand arguments
+  local expanded=()
+  for arg in "$@"; do
+    if [[ "$arg" =~ ^[0-9]+$ ]]; then
+      index=$((arg - 1))
+      expanded+=("${files[$index]}")
+    else
+      expanded+=("$arg")
+    fi
   done
+
+  echo "▶ $cmd ${expanded[*]}"
+  $cmd "${expanded[@]}"
 }
 
 # cocoapods
