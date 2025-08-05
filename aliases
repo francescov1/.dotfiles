@@ -142,7 +142,7 @@ help() {
 
 # use scmpuff numbering for other commands
 # eg: `s rm 2-3`
-cm() {
+s() {
   local cmd=$1
   shift
 
@@ -156,9 +156,8 @@ cm() {
   local -a expanded
   for arg in "$@"; do
     if [[ "$arg" =~ '^[0-9]+$' ]]; then
-      local index=$((arg - 1))
-      if [[ -n "${files[$index]}" ]]; then
-        expanded+=("${files[$index]}")
+      if [[ -n "${files[$arg]}" ]]; then
+        expanded+=("${files[$arg]}")
       else
         echo "Invalid index: $arg" >&2
         return 1
