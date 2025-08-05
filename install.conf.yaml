@@ -16,7 +16,7 @@
       stdout: true
       stdin: true
     - description: Installing Homebrew packages
-      command: brew install tmux tmuxinator pyenv pyenv-virtualenv bat fzf gh raycast diff-so-fancy karabiner-elements zsh-autosuggestions zsh-syntax-highlighting scmpuff derailed/k9s/k9s postgresql@16 ripgrep helm helmfile
+      command: brew install tmux tmuxinator pyenv pyenv-virtualenv uv bat fzf gh raycast diff-so-fancy karabiner-elements zsh-autosuggestions zsh-syntax-highlighting scmpuff derailed/k9s/k9s postgresql@16 ripgrep helm helmfile
       stderr: true
       stdout: true
       stdin: true
