@@ -3,6 +3,8 @@
 ###################### Random Helpers ######################
 ############################################################
 
+alias sz="source ~/.zshrc"
+
 # Node.js shortcuts
 alias ns="npm start"
 alias nt="npm test"
