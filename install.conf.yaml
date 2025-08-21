@@ -16,12 +16,22 @@
       stdout: true
       stdin: true
     - description: Installing Homebrew packages
-      command: brew install tmux tmuxinator pyenv pyenv-virtualenv uv bat fzf fpp gh raycast diff-so-fancy karabiner-elements zsh-autosuggestions zsh-syntax-highlighting scmpuff derailed/k9s/k9s postgresql@16 ripgrep helm helmfile hashicorp/tap/terraform watch procs
+      command: brew install tmux tmuxinator pyenv pyenv-virtualenv uv bat fzf fpp gh raycast diff-so-fancy karabiner-elements zsh-autosuggestions zsh-syntax-highlighting scmpuff derailed/k9s/k9s postgresql@16 ripgrep helm helmfile hashicorp/tap/terraform watch procs colima docker docker-compose
       stderr: true
       stdout: true
       stdin: true
     - description: Installing Homebrew casks
       command: brew install --cask keepingyouawake cursor warp rectangle contexts brave-browser iterm2
+      stderr: true
+      stdout: true
+      stdin: true
+    - description: Starting Colima and setting Docker context
+      command: colima start --runtime docker && docker context use colima
+      stderr: true
+      stdout: true
+      stdin: true
+    - description: Enabling Colima auto-start at login
+      command: brew services start colima
       stderr: true
       stdout: true
       stdin: true
