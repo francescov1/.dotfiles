@@ -160,3 +160,4 @@ eval "$(scmpuff init -s)"
 
 
 . "$HOME/.local/bin/env"
+export PATH="$PATH:/Users/francesco/.nsccli/bin"
