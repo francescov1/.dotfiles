@@ -21,7 +21,7 @@
       stdout: true
       stdin: true
     - description: Installing Homebrew casks
-      command: brew install --cask keepingyouawake cursor warp rectangle contexts brave-browser iterm2 lulu
+      command: brew install --cask keepingyouawake cursor rectangle contexts brave-browser iterm2 lulu ghostty
       stderr: true
       stdout: true
       stdin: true
