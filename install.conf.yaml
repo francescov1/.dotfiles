@@ -42,6 +42,10 @@
       stdin: true
     - description: Setting key repeat speeds
       command: defaults write NSGlobalDomain KeyRepeat -int 2 && defaults write -g InitialKeyRepeat -int 10
+    - description: Installing TPM (Tmux Plugin Manager)
+      command: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 2>/dev/null || (cd ~/.tmux/plugins/tpm && git pull)
+      stderr: true
+      stdout: true
 
 - link:
     ~/.gitconfig: gitconfig
@@ -56,3 +60,9 @@
     ~/Library/Application\ Support/Cursor/User/keybindings.json:
       path: keybindings.json
       force: true
+
+- shell:
+    - description: Installing TPM plugins
+      command: tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH ~/.tmux/plugins 2>/dev/null || tmux new-session -d -s _tpm_install; tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH ~/.tmux/plugins && ~/.tmux/plugins/tpm/bin/install_plugins; tmux kill-session -t _tpm_install 2>/dev/null || true
+      stderr: true
+      stdout: true
