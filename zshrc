@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/Users/francescovirga/completions:"* ]]; then export FPATH="/Users/francescovirga/completions:$FPATH"; fi
 # Path to your Oh My Zsh installation.
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -158,6 +160,7 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #bindkey '\e\t' autosuggest-accept # accept autosuggestion with option-tab
 eval "$(scmpuff init -s)"
 
-
 . "$HOME/.local/bin/env"
 export PATH="$PATH:/Users/francesco/.nsccli/bin"
+
+. "/Users/francescovirga/.deno/env"
