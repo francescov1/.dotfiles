@@ -159,7 +159,12 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(scmpuff init -s)"
 
 
-. "$HOME/.local/bin/env"
+#. "$HOME/.local/bin/env"
 export PATH="$PATH:/Users/francesco/.nsccli/bin"
 # Go bin path (only if Go is installed)
 command -v go &>/dev/null && export PATH="$PATH:$(go env GOPATH)/bin"
+
+. "/Users/francescovirga/.deno/env"
+
+# OpenClaw Completion
+source <(openclaw completion --shell zsh)
