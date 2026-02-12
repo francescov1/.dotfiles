@@ -164,7 +164,7 @@ export PATH="$PATH:/Users/francesco/.nsccli/bin"
 # Go bin path (only if Go is installed)
 command -v go &>/dev/null && export PATH="$PATH:$(go env GOPATH)/bin"
 
-. "/Users/francescovirga/.deno/env"
+#. "/Users/francescovirga/.deno/env"
 
 # OpenClaw Completion
-source <(openclaw completion --shell zsh)
+#source <(openclaw completion --shell zsh)
