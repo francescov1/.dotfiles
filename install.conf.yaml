@@ -62,6 +62,9 @@
     ~/.codex/instructions.md:
       path: AGENTS.md
       relink: true
+    ~/.config/opencode/AGENTS.md:
+      path: AGENTS.md
+      relink: true
     "~/Library/Application Support/Cursor/User/keybindings.json":
       path: keybindings.json
       force: true
