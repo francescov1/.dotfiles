@@ -9,9 +9,9 @@
     - description: Updating Homebrew
       command: brew update
     - description: Installing nvm
-      command: "[ -d \"$HOME/.nvm\" ] || curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | PROFILE=/dev/null bash"
+      command: '[ -d "$HOME/.nvm" ] || curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | PROFILE=/dev/null bash'
     - description: Installing oh-my-zsh
-      command: "[ -d \"$HOME/.oh-my-zsh\" ] || sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" \"\" --unattended --keep-zshrc"
+      command: '[ -d "$HOME/.oh-my-zsh" ] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc'
       stderr: true
       stdout: true
     - description: Installing Homebrew packages
@@ -20,7 +20,7 @@
       stdout: true
       stdin: true
     - description: Installing Homebrew casks
-      command: HOMEBREW_NO_INSTALL_UPGRADE=1 brew install --cask --no-quarantine raycast karabiner-elements keepingyouawake cursor rectangle contexts brave-browser iterm2 lulu ghostty ngrok claude-code codex || true
+      command: HOMEBREW_NO_INSTALL_UPGRADE=1 brew install --cask raycast karabiner-elements keepingyouawake cursor rectangle contexts brave-browser iterm2 lulu ghostty ngrok claude-code codex || true
       stderr: true
       stdout: true
       stdin: true
@@ -30,7 +30,7 @@
       stdout: true
       stdin: true
     - description: Enabling Colima auto-start at login
-      command: brew services list | grep -q "colima.*started" || brew services start colima
+      command: brew services list | grep -q colima || brew services start colima
       stderr: true
       stdout: true
       stdin: true
@@ -57,10 +57,10 @@
       force: true
     ~/.aliases: aliases
     ~/.claude/CLAUDE.md:
-      path: agents.md
+      path: AGENTS.md
       relink: true
     ~/.codex/instructions.md:
-      path: agents.md
+      path: AGENTS.md
       relink: true
     "~/Library/Application Support/Cursor/User/keybindings.json":
       path: keybindings.json
