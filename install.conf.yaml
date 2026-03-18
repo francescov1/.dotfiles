@@ -2,31 +2,30 @@
 
 - shell:
     - description: Installing Homebrew
-      command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      command: command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       stderr: true
       stdout: true
       stdin: true
     - description: Updating Homebrew
       command: brew update
     - description: Installing nvm
-      command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+      command: "[ -d \"$HOME/.nvm\" ] || curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | PROFILE=/dev/null bash"
     - description: Installing oh-my-zsh
-      command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      command: "[ -d \"$HOME/.oh-my-zsh\" ] || sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" \"\" --unattended --keep-zshrc"
       stderr: true
       stdout: true
-      stdin: true
     - description: Installing Homebrew packages
-      command: brew install tmux tmuxinator tmux-fingers pyenv pyenv-virtualenv uv bat fzf fpp gh raycast diff-so-fancy karabiner-elements zsh-autosuggestions zsh-syntax-highlighting scmpuff derailed/k9s/k9s postgresql@16 ripgrep helm helmfile hashicorp/tap/terraform watch procs colima docker docker-compose jj
+      command: HOMEBREW_NO_INSTALL_UPGRADE=1 brew install tmux tmuxinator tmux-fingers pyenv pyenv-virtualenv uv bat fzf fpp gh raycast diff-so-fancy karabiner-elements zsh-autosuggestions zsh-syntax-highlighting scmpuff derailed/k9s/k9s postgresql@16 ripgrep helm helmfile hashicorp/tap/terraform watch procs colima docker docker-compose jj
       stderr: true
       stdout: true
       stdin: true
     - description: Installing Homebrew casks
-      command: brew install --cask keepingyouawake cursor rectangle contexts brave-browser iterm2 lulu ghostty ngrok claude-code codex
+      command: HOMEBREW_NO_INSTALL_UPGRADE=1 brew install --cask keepingyouawake cursor rectangle contexts brave-browser iterm2 lulu ghostty ngrok claude-code codex
       stderr: true
       stdout: true
       stdin: true
     - description: Starting Colima and setting Docker context
-      command: colima start --runtime docker && docker context use colima
+      command: colima status 2>/dev/null || colima start --runtime docker; docker context use colima
       stderr: true
       stdout: true
       stdin: true
@@ -36,7 +35,7 @@
       stdout: true
       stdin: true
     - description: Installing helm-diff
-      command: helm plugin install https://github.com/databus23/helm-diff
+      command: helm plugin list 2>/dev/null | grep -q diff || helm plugin install https://github.com/databus23/helm-diff
       stderr: true
       stdout: true
       stdin: true
