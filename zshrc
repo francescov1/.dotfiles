@@ -168,3 +168,4 @@ command -v go &>/dev/null && export PATH="$PATH:$(go env GOPATH)/bin"
 
 # OpenClaw Completion
 #source <(openclaw completion --shell zsh)
+
