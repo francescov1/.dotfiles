@@ -59,7 +59,7 @@
     ~/.claude/CLAUDE.md:
       path: AGENTS.md
       relink: true
-    ~/.codex/instructions.md:
+    ~/.codex/AGENTS.md:
       path: AGENTS.md
       relink: true
     ~/.config/opencode/AGENTS.md:
