@@ -10,6 +10,7 @@
 
 - Prefer simplicity over cleverness. Fewer files, fewer abstractions.
 - ALWAYS fix the root cause. Do not ship bandaid fixes, workarounds, or issue-covering patches when the underlying problem can be fixed directly.
+- IMPORTANT: Prefer root-level changes over leaf-level patches. If multiple places depend on the same shape or behavior, update the highest-leverage canonical definition instead of layering ad hoc overrides at usage sites.
 - Don't write overly defensive code. Don't add try/catches just to log and rethrow — let errors bubble up to top-level handlers. Only catch errors when there's actual recovery logic.
 - Don't type cast or suppress type/lint errors unless there's a good reason or precedent in the codebase for this case. Always fix properly first. Only cast if the proper fix is overly complex and there's no existing type to use.
 - NEVER support backwards compatibility or legacy properties unless asked. Assume all changes can be breaking.
