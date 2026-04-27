@@ -15,7 +15,7 @@
       stderr: true
       stdout: true
     - description: Installing Homebrew packages
-      command: HOMEBREW_NO_INSTALL_UPGRADE=1 brew install tmux tmuxinator tmux-fingers pyenv pyenv-virtualenv uv bat fzf fpp gh diff-so-fancy zsh-autosuggestions zsh-syntax-highlighting scmpuff derailed/k9s/k9s postgresql@16 ripgrep helm helmfile hashicorp/tap/terraform watch procs colima docker docker-compose jj
+      command: HOMEBREW_NO_INSTALL_UPGRADE=1 brew install tmux tmuxinator tmux-fingers pyenv pyenv-virtualenv uv asdf bat fzf fpp gh diff-so-fancy zsh-autosuggestions zsh-syntax-highlighting scmpuff derailed/k9s/k9s postgresql@16 ripgrep helm helmfile hashicorp/tap/terraform watch procs colima docker docker-compose jj
       stderr: true
       stdout: true
       stdin: true
