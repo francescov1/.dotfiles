@@ -69,6 +69,13 @@ plugins=(git)
 
 # NOTE: idk why I had to add this, but this stopped working
 export ZSH="$HOME/.oh-my-zsh" 
+
+export HOMEBREW_PREFIX="$(brew --prefix)"
+
+# Completion paths must be set before Oh My Zsh runs compinit.
+fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
+[[ -d ${ASDF_DATA_DIR:-$HOME/.asdf}/completions ]] && fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -114,22 +121,13 @@ unsetopt share_history
 # case-insensitive auto complete - only matches case-insensitive when no case-sensitive matches exist
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
-if type brew &>/dev/null
-then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-fi
-
-autoload -Uz compinit && compinit -i
-autoload bashcompinit && bashcompinit
-
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init - --no-rehash)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
@@ -150,10 +148,10 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Postgres
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/postgresql@16/bin:$PATH"
 
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "$HOMEBREW_PREFIX/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$HOMEBREW_PREFIX/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # TODO: Figure out how to set option tab as the key binding
 #bindkey '\e\t' autosuggest-accept # accept autosuggestion with option-tab
 eval "$(scmpuff init -s)"
@@ -162,9 +160,13 @@ eval "$(scmpuff init -s)"
 #. "$HOME/.local/bin/env"
 export PATH="$PATH:/Users/francesco/.nsccli/bin"
 # Go bin path (only if Go is installed)
-command -v go &>/dev/null && export PATH="$PATH:$(go env GOPATH)/bin"
+[[ -d "$HOME/go/bin" ]] && export PATH="$PATH:$HOME/go/bin"
 
-. "/Users/francescovirga/.deno/env"
+#. "/Users/francescovirga/.deno/env"
 
 # OpenClaw Completion
-source <(openclaw completion --shell zsh)
+#source <(openclaw completion --shell zsh)
+
+
+# asdf version manager
+. "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
