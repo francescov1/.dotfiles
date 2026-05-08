@@ -5,7 +5,7 @@
 	helper = 
 	helper = !which gh >/dev/null && gh auth git-credential
 [user]
-	name = Francesco Virga\n
+	name = Francesco Virga
 	email = francescod.virga@gmail.com
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RF

@@ -23,6 +23,10 @@ alias bb="bun run build"
 alias bd="bun run dev"
 alias br="bun run"
 
+# tmux
+alias ta="tmux a"
+alias tn="tmux new"
+
 # clear dns cache
 alias flush-dns-cache="sudo killall -HUP mDNSResponder"
 
@@ -193,3 +197,6 @@ function rp {
 
 # Claude perms
 alias claude='claude --dangerously-skip-permissions'
+alias cc='claude'
+
+alias oc='opencode'
