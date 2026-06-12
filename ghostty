@@ -1,0 +1,12 @@
+# Ghostty config
+# Docs: ghostty +show-config --default --docs
+
+# Hyper (caps lock via Karabiner = ctrl+opt+shift) + hjkl for tmux/vim pane nav.
+# iTerm dropped the extra modifiers and sent plain ^H/^J/^K/^L; Ghostty encodes
+# ctrl+alt+shift+<key> as CSI-u sequences tmux doesn't recognize, so send the
+# raw control characters explicitly.
+keybind = ctrl+alt+shift+h=text:\x08
+keybind = ctrl+alt+shift+j=text:\x0a
+keybind = ctrl+alt+shift+k=text:\x0b
+keybind = ctrl+alt+shift+l=text:\x0c
+keybind = ctrl+alt+shift+backslash=text:\x1c

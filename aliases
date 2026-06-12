@@ -197,6 +197,6 @@ function rp {
 
 # Claude perms
 alias claude='claude --dangerously-skip-permissions'
-alias cc='claude'
+alias cc='claude --dangerously-skip-permissions'
 
 alias oc='opencode'

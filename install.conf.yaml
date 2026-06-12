@@ -71,6 +71,9 @@
     "~/Library/Application Support/Cursor/User/keybindings.json":
       path: keybindings.json
       force: true
+    "~/Library/Application Support/com.mitchellh.ghostty/config":
+      path: ghostty
+      force: true
 
 - shell:
     - description: Installing TPM plugins
