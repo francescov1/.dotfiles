@@ -5,6 +5,7 @@
 # iTerm dropped the extra modifiers and sent plain ^H/^J/^K/^L; Ghostty encodes
 # ctrl+alt+shift+<key> as CSI-u sequences tmux doesn't recognize, so send the
 # raw control characters explicitly.
+keybind = ctrl+alt+shift+g=text:\x07
 keybind = ctrl+alt+shift+h=text:\x08
 keybind = ctrl+alt+shift+j=text:\x0a
 keybind = ctrl+alt+shift+k=text:\x0b
