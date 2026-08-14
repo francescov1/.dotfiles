@@ -14,7 +14,6 @@
 - IMPORTANT: Prefer root-level changes over leaf-level patches. If multiple places depend on the same shape or behavior, update the highest-leverage canonical definition instead of layering ad hoc overrides at usage sites.
 - Don't write overly defensive code. Don't add try/catches just to log and rethrow — let errors bubble up to top-level handlers. Only catch errors when there's actual recovery logic.
 - Don't type cast or suppress type/lint errors unless there's a good reason or precedent in the codebase for this case. Always fix properly first. Only cast if the proper fix is overly complex and there's no existing type to use.
-- Avoid `any` unless the user explicitly asks for it. Prefer strict types and proper type modeling.
 - NEVER support backwards compatibility or legacy properties unless asked. Assume all changes can be breaking, rename things at the source, and remove deprecated paths instead of carrying both versions.
 - Avoid optional values and silent fallbacks. There should be one correct way of doing things. Fail fast. Prefer nulls over optionals for legitimately empty values.
 
@@ -68,8 +67,7 @@ await trainingJobStore.updateTrainingJobStatus(...);
 
 ## Comments
 
-- Do not add comments explaining why you removed or changed something. Only add comments that enhance understanding of the current code.
-- Do not add comments that merely narrate what code does. Only comment non-obvious intent or constraints.
+- Only comment non-obvious intent or constraints of the code as it exists now — never narrate what changed, why something was removed, or what self-evident code does.
 
 ## Infrastructure
 
