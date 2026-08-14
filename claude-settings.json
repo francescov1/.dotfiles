@@ -1,0 +1,175 @@
+{
+  "agentPushNotifEnabled": true,
+  "effortLevel": "high",
+  "enabledPlugins": {
+    "cloudflare-skills@cloudflare": true,
+    "code-review@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "compound-engineering@every-marketplace": true,
+    "fable-advisor@fable-advisor": true,
+    "feature-dev@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "greptile@claude-plugins-official": true,
+    "hookify@claude-plugins-official": true,
+    "i-have-adhd@i-have-adhd": true,
+    "linear@claude-plugins-official": true,
+    "plugin-dev@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true,
+    "ralph-wiggum@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "slack@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "extraKnownMarketplaces": {
+    "anthropic-agent-skills": {
+      "source": {
+        "repo": "anthropics/skills",
+        "source": "github"
+      }
+    },
+    "fable-advisor": {
+      "source": {
+        "repo": "context-labs/fable-advisor",
+        "source": "github"
+      }
+    },
+    "i-have-adhd": {
+      "source": {
+        "repo": "ayghri/i-have-adhd",
+        "source": "github"
+      }
+    }
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "{ [ -n \"$CC_NOTIF_CLASSIFIER\" ] && exit 0; input=$(cat); msg=$(printf '%s' \"$input\" | jq -r '.message // \"Claude needs your input\"'); sid=$(printf '%s' \"$input\" | jq -r '.session_id // empty'); name=$(jq -r --arg sid \"$sid\" 'select(.sessionId == $sid and .kind == \"interactive\") | .name // empty' \"$HOME\"/.claude/sessions/*.json 2>/dev/null | head -1); [ -n \"$name\" ] && /opt/homebrew/bin/terminal-notifier -title \"Claude Code — $name\" -message \"$msg\"; } 2>/dev/null || true",
+            "type": "command"
+          }
+        ],
+        "matcher": "permission_prompt|agent_needs_input"
+      },
+      {
+        "hooks": [
+          {
+            "command": "/Users/francesco/.office-bin/office.sh hook claude-code",
+            "type": "command"
+          }
+        ],
+        "managedBy": "office"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/francesco/.office-bin/office.sh hook claude-code",
+            "type": "command"
+          }
+        ],
+        "managedBy": "office"
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/francesco/.office-bin/office.sh hook claude-code",
+            "type": "command"
+          }
+        ],
+        "managedBy": "office"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/francesco/.office-bin/office.sh hook claude-code",
+            "type": "command"
+          }
+        ],
+        "managedBy": "office"
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/francesco/.office-bin/office.sh hook claude-code",
+            "type": "command"
+          }
+        ],
+        "managedBy": "office"
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/francesco/.office-bin/office.sh hook claude-code",
+            "type": "command"
+          }
+        ],
+        "managedBy": "office"
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "{ [ -n \"$CC_NOTIF_CLASSIFIER\" ] && exit 0; input=$(cat); printf '%s\\n' \"$input\" >> \"$HOME\"/.claude/debug/stop-hook-payloads.jsonl; sid=$(printf '%s' \"$input\" | jq -r '.session_id // empty'); name=$(jq -r --arg sid \"$sid\" 'select(.sessionId == $sid and .kind == \"interactive\") | .name // empty' \"$HOME\"/.claude/sessions/*.json 2>/dev/null | head -1); [ -z \"$name\" ] && exit 0; cd \"$HOME\"/.claude/notify-classifier-home; verdict=$(printf '%s' \"$input\" | jq -c '{running_background_tasks: ((.background_tasks // []) | map(select(.status == \"running\")) | length), task_descriptions: ((.background_tasks // []) | map(select(.status == \"running\") | .description[0:60])), final_message: (.last_assistant_message // \"\" | .[-1500:])}' | CC_NOTIF_CLASSIFIER=1 CLAUDE_CODE_DISABLE_BUNDLED_SKILLS=1 \"$HOME\"/.bun/bin/claude -p --model haiku --strict-mcp-config --no-session-persistence --settings '{\"disableAllHooks\":true}' \"$(cat \"$HOME\"/.claude/notify-classifier-prompt.txt)\"); case \"$verdict\" in NOTIFY*) /opt/homebrew/bin/terminal-notifier -title \"Claude Code — $name\" -message \"Waiting for you\";; esac; } 2>/dev/null || true",
+            "type": "command",
+            "timeout": 90
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "command": "/Users/francesco/.office-bin/office.sh hook claude-code",
+            "type": "command"
+          }
+        ],
+        "managedBy": "office"
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/francesco/.office-bin/office.sh hook claude-code",
+            "type": "command"
+          }
+        ],
+        "managedBy": "office"
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/francesco/.office-bin/office.sh hook claude-code",
+            "type": "command"
+          }
+        ],
+        "managedBy": "office"
+      }
+    ]
+  },
+  "model": "claude-fable-5[1m]",
+  "remoteControlAtStartup": true,
+  "skipDangerousModePermissionPrompt": true,
+  "teammateMode": "in-process",
+  "tui": "fullscreen"
+}

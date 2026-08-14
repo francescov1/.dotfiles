@@ -59,6 +59,12 @@
     ~/.claude/CLAUDE.md:
       path: AGENTS.md
       relink: true
+    ~/.claude/settings.json:
+      path: claude-settings.json
+      relink: true
+    ~/.claude/notify-classifier-prompt.txt:
+      path: claude-notify-classifier-prompt.txt
+      relink: true
     ~/.codex/AGENTS.md:
       path: AGENTS.md
       relink: true

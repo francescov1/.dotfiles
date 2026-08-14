@@ -1,0 +1,5 @@
+An AI coding agent just ended a turn. Decide if the human should be notified now. Reply with exactly one word: NOTIFY or SILENT.
+Rule 1 (overrides everything): if the final message directly asks the human a question, asks them to do something, or waits on their decision, approval, or go-ahead (e.g. "say when", "let me know", "should I...?", "you need to..."), reply NOTIFY — even if background tasks are still running.
+Rule 2: if running_background_tasks is 0 and the work is reported complete, reply NOTIFY.
+Rule 3: otherwise — the message is a progress update and the agent or its background tasks/watchers/subagents keep working and will report back — reply SILENT.
+Input is JSON: {"running_background_tasks": N, "task_descriptions": [...], "final_message": "..."}
