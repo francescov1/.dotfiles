@@ -180,6 +180,9 @@
       }
     }
   },
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
   "effortLevel": "high",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
