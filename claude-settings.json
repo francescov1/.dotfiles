@@ -10,7 +10,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "{ [ -n \"$CC_NOTIF_CLASSIFIER\" ] && exit 0; input=$(cat); msg=$(printf '%s' \"$input\" | jq -r '.message // \"Claude needs your input\"'); sid=$(printf '%s' \"$input\" | jq -r '.session_id // empty'); name=$(jq -r --arg sid \"$sid\" 'select(.sessionId == $sid and .kind == \"interactive\") | .name // empty' \"$HOME\"/.claude/sessions/*.json 2>/dev/null | head -1); [ -n \"$name\" ] && { [ -n \"$TMUX_PANE\" ] && { /opt/homebrew/bin/tmux select-pane -t \"$TMUX_PANE\" -P \"bg=#35301c\"; /opt/homebrew/bin/tmux set -p -t \"$TMUX_PANE\" @claude_waiting \"$name\"; }; /opt/homebrew/bin/terminal-notifier -title \"Claude Code — $name\" -message \"$msg\" -activate com.mitchellh.ghostty -execute \"/opt/homebrew/bin/tmux switch-client -t $TMUX_PANE; /opt/homebrew/bin/tmux select-window -t $TMUX_PANE; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#7a5c00; sleep 0.7; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#6e5505; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#634d09; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#58460e; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#4c3f13; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#413717; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#35301c\"; }; } 2>/dev/null || true",
+            "command": "{ [ -n \"$CC_NOTIF_CLASSIFIER\" ] && exit 0; input=$(cat); msg=$(printf '%s' \"$input\" | jq -r '.message // \"Claude needs your input\"'); sid=$(printf '%s' \"$input\" | jq -r '.session_id // empty'); name=$(jq -r --arg sid \"$sid\" 'select(.sessionId == $sid and .kind == \"interactive\") | .name // empty' \"$HOME\"/.claude/sessions/*.json 2>/dev/null | head -1); [ -n \"$name\" ] && { [ -n \"$TMUX_PANE\" ] && { /opt/homebrew/bin/tmux select-pane -t \"$TMUX_PANE\" -P \"bg=#35301c\"; }; /opt/homebrew/bin/terminal-notifier -title \"Claude Code — $name\" -message \"$msg\" -activate com.mitchellh.ghostty -execute \"/opt/homebrew/bin/tmux switch-client -t $TMUX_PANE; /opt/homebrew/bin/tmux select-window -t $TMUX_PANE; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#7a5c00; sleep 0.7; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#6e5505; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#634d09; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#58460e; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#4c3f13; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#413717; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#35301c\"; }; } 2>/dev/null || true",
             "async": true
           }
         ]
@@ -49,6 +49,14 @@
         "hooks": [
           {
             "type": "command",
+            "command": "[ -n \"$TMUX_PANE\" ] && /opt/homebrew/bin/tmux select-pane -t \"$TMUX_PANE\" -P default 2>/dev/null; true"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
             "command": "/Users/francesco/.office-bin/office.sh hook claude-code"
           }
         ]
@@ -59,7 +67,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$TMUX_PANE\" ] && { /opt/homebrew/bin/tmux set -pu -t \"$TMUX_PANE\" pane-border-style; /opt/homebrew/bin/tmux set -pu -t \"$TMUX_PANE\" @claude_waiting; /opt/homebrew/bin/tmux select-pane -t \"$TMUX_PANE\" -P default; } 2>/dev/null; true"
+            "command": "[ -n \"$TMUX_PANE\" ] && /opt/homebrew/bin/tmux select-pane -t \"$TMUX_PANE\" -P default 2>/dev/null; true"
           }
         ]
       },
@@ -87,7 +95,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "{ [ -n \"$CC_NOTIF_CLASSIFIER\" ] && exit 0; input=$(cat); printf '%s\\n' \"$input\" >> \"$HOME\"/.claude/debug/stop-hook-payloads.jsonl; sid=$(printf '%s' \"$input\" | jq -r '.session_id // empty'); name=$(jq -r --arg sid \"$sid\" 'select(.sessionId == $sid and .kind == \"interactive\") | .name // empty' \"$HOME\"/.claude/sessions/*.json 2>/dev/null | head -1); [ -z \"$name\" ] && exit 0; cd \"$HOME\"/.claude/notify-classifier-home; verdict=$(printf '%s' \"$input\" | jq -c '{running_background_tasks: ((.background_tasks // []) | map(select(.status == \"running\")) | length), task_descriptions: ((.background_tasks // []) | map(select(.status == \"running\") | .description[0:60])), final_message: (.last_assistant_message // \"\" | .[-1500:])}' | CC_NOTIF_CLASSIFIER=1 CLAUDE_CODE_DISABLE_BUNDLED_SKILLS=1 \"$HOME\"/.bun/bin/claude -p --model haiku --strict-mcp-config --no-session-persistence --settings '{\"disableAllHooks\":true}' \"$(cat \"$HOME\"/.claude/notify-classifier-prompt.txt)\"); case \"$verdict\" in NOTIFY*) [ -n \"$TMUX_PANE\" ] && { /opt/homebrew/bin/tmux select-pane -t \"$TMUX_PANE\" -P \"bg=#35301c\"; /opt/homebrew/bin/tmux set -p -t \"$TMUX_PANE\" @claude_waiting \"$name\"; }; /opt/homebrew/bin/terminal-notifier -title \"Claude Code — $name\" -message \"Waiting for you\" -activate com.mitchellh.ghostty -execute \"/opt/homebrew/bin/tmux switch-client -t $TMUX_PANE; /opt/homebrew/bin/tmux select-window -t $TMUX_PANE; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#7a5c00; sleep 0.7; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#6e5505; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#634d09; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#58460e; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#4c3f13; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#413717; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#35301c\";; esac; } 2>/dev/null || true",
+            "command": "{ [ -n \"$CC_NOTIF_CLASSIFIER\" ] && exit 0; input=$(cat); printf '%s\\n' \"$input\" >> \"$HOME\"/.claude/debug/stop-hook-payloads.jsonl; sid=$(printf '%s' \"$input\" | jq -r '.session_id // empty'); name=$(jq -r --arg sid \"$sid\" 'select(.sessionId == $sid and .kind == \"interactive\") | .name // empty' \"$HOME\"/.claude/sessions/*.json 2>/dev/null | head -1); [ -z \"$name\" ] && exit 0; cd \"$HOME\"/.claude/notify-classifier-home; verdict=$(printf '%s' \"$input\" | jq -c '{running_background_tasks: ((.background_tasks // []) | map(select(.status == \"running\")) | length), task_descriptions: ((.background_tasks // []) | map(select(.status == \"running\") | .description[0:60])), final_message: (.last_assistant_message // \"\" | .[-1500:])}' | CC_NOTIF_CLASSIFIER=1 CLAUDE_CODE_DISABLE_BUNDLED_SKILLS=1 \"$HOME\"/.bun/bin/claude -p --model haiku --strict-mcp-config --no-session-persistence --settings '{\"disableAllHooks\":true}' \"$(cat \"$HOME\"/.claude/notify-classifier-prompt.txt)\"); case \"$verdict\" in NOTIFY*) [ -n \"$TMUX_PANE\" ] && { /opt/homebrew/bin/tmux select-pane -t \"$TMUX_PANE\" -P \"bg=#35301c\"; }; /opt/homebrew/bin/terminal-notifier -title \"Claude Code — $name\" -message \"Waiting for you\" -activate com.mitchellh.ghostty -execute \"/opt/homebrew/bin/tmux switch-client -t $TMUX_PANE; /opt/homebrew/bin/tmux select-window -t $TMUX_PANE; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#7a5c00; sleep 0.7; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#6e5505; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#634d09; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#58460e; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#4c3f13; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#413717; sleep 0.12; /opt/homebrew/bin/tmux select-pane -t $TMUX_PANE -P bg=#35301c\";; esac; } 2>/dev/null || true",
             "timeout": 90,
             "async": true
           }
@@ -117,7 +125,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$TMUX_PANE\" ] && { /opt/homebrew/bin/tmux set -pu -t \"$TMUX_PANE\" pane-border-style; /opt/homebrew/bin/tmux set -pu -t \"$TMUX_PANE\" @claude_waiting; /opt/homebrew/bin/tmux select-pane -t \"$TMUX_PANE\" -P default; } 2>/dev/null; true"
+            "command": "[ -n \"$TMUX_PANE\" ] && /opt/homebrew/bin/tmux select-pane -t \"$TMUX_PANE\" -P default 2>/dev/null; true"
           }
         ]
       },
